@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  token: 'c7bc85dfe8999b50086b8535e1fee3d9f7e800e2'
+  token: '176bef3d400a1abe868e4bb1e26cce7f77d3509b',
+  apiUrl: 'https://api.github.com'
 };
 
 /*
