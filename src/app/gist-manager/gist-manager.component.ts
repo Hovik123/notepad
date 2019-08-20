@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GistService} from '@core/services/gist.service';
 
 @Component({
   selector: 'app-gist-manager',
@@ -9,7 +10,8 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class GistManagerComponent implements OnInit {
   gistForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private gistService: GistService) {
 
   }
 
@@ -20,15 +22,31 @@ export class GistManagerComponent implements OnInit {
       note: ['', [Validators.required, Validators.maxLength(1000)]],
       notes: this.fb.array([])
     });
+
+    const gist: any = JSON.parse(localStorage.getItem('gists'));
+    if (gist) {
+      const notes = this.parseFromFiles(gist.files);
+      this.gistForm.patchValue({
+        notepadTitle: gist.description
+      });
+      notes.map((note) => {
+        this.notes.push(this.createNote(note));
+      });
+    }
+
   }
 
-  createNote({title, note}): FormGroup {
+  createNote({title, note, uuid = null}): FormGroup {
     return this.fb.group({
       title: [title, [Validators.required, Validators.maxLength(255)]],
-      note: [note, [Validators.required, Validators.maxLength(1000)]]
+      note: [note, [Validators.required, Validators.maxLength(1000)]],
+      uuid: [uuid]
     });
   }
 
+  /**
+   * add item to notes list and mark input fields as untouched
+   */
   addItem(): void {
     if (this.gistForm.valid) {
       const {title, note} = this.gistForm.getRawValue();
@@ -49,7 +67,8 @@ export class GistManagerComponent implements OnInit {
     }
   }
 
-  deleteNote(index) {
+  deleteNote(index, key) {
+    this.findFileAndRemoveFromMemo(key);
     this.notes.removeAt(index);
   }
 
@@ -57,13 +76,22 @@ export class GistManagerComponent implements OnInit {
     while (this.notes.length !== 0) {
       this.notes.removeAt(0);
     }
+    localStorage.removeItem('gists');
   }
 
   saveNotes() {
     if (this.notes.length >= 1) {
       if (this.notes.valid) {
-        alert('not yet implemented');
-        // TODO: add save logic
+        const notes = this.notes.getRawValue();
+        const {notepadTitle} = this.gistForm.getRawValue();
+        const files = this.parseToFiles(notes);
+        const data = {
+          description: notepadTitle,
+          files
+        };
+        this.gistService.createGist(data).subscribe((gist) => {
+          localStorage.setItem('gists', JSON.stringify(gist));
+        });
       } else {
         this.gistForm.markAllAsTouched();
       }
@@ -73,5 +101,37 @@ export class GistManagerComponent implements OnInit {
 
   get notes(): FormArray {
     return this.gistForm.get('notes') as FormArray;
+  }
+
+  private parseToFiles(notes: any[]): any {
+    const files = {};
+    notes.forEach(({title, note}) => {
+      files[title] = {
+        content: note
+      };
+    });
+    return files;
+  }
+
+  /**
+   * parse from files to notes
+   */
+  parseFromFiles(files: object) {
+    const keys = Object.keys(files);
+    return keys.map((key: string) => {
+      return {
+        title: files[key].filename,
+        note: files[key].content
+      };
+    });
+  }
+
+  findFileAndRemoveFromMemo(key) {
+    const gist = JSON.parse(localStorage.getItem('gists'));
+    if (gist) {
+      delete gist.files[key];
+    }
+    localStorage.setItem('gists', JSON.stringify(gist));
+
   }
 }
