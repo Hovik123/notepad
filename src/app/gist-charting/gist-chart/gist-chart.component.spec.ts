@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoteItemComponent } from './note-item.component';
+import { GistChartComponent } from './gist-chart.component';
 
-describe('NoteItemComponent', () => {
-  let component: NoteItemComponent;
-  let fixture: ComponentFixture<NoteItemComponent>;
+describe('GistChartComponent', () => {
+  let component: GistChartComponent;
+  let fixture: ComponentFixture<GistChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NoteItemComponent ]
+      declarations: [ GistChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NoteItemComponent);
+    fixture = TestBed.createComponent(GistChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

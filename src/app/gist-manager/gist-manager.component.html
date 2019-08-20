@@ -1,32 +1,83 @@
-<form>
+<form [formGroup]="gistForm">
   <div class="row">
     <div class="col-6">
       <div class="form-group">
         <label for="title">Notepad title</label>
-        <input type="text" class="form-control" id="title" placeholder="My notepad title...">
+        <input type="text" class="form-control"
+               [class.is-invalid]="gistForm.get('notepadTitle').touched && gistForm.get('notepadTitle').invalid"
+               id="title" placeholder="My notepad title..."
+               formControlName="notepadTitle" name="notepadTitle">
+        <div class="invalid-feedback" *ngIf="gistForm.get('notepadTitle').hasError('required')">This filed is required
+        </div>
+        <div class="invalid-feedback" *ngIf="gistForm.get('notepadTitle').hasError('maxLength')">This filed should be
+          have length max 255
+        </div>
+
       </div>
     </div>
     <div class="col-4 offset-2">
       <div class="btn-group pull-right" role="group">
-        <button type="button" class="btn">View Stats</button>
-        <button type="button" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <a routerLink="/stats" class="btn">View Stats</a>
+        <button type="button" class="btn btn-primary" (click)="saveNotes()" [disabled]="notes.length===0">Save</button>
+        <button type="button" class="btn btn-danger" (click)="deleteAllNotes()" [disabled]="notes.length===0">Delete
+        </button>
       </div>
-
     </div>
   </div>
   <div class="row">
     <div class="col-8">
       <span>My Notes</span>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Enter note title...">
+        <input type="text" class="form-control"
+               [class.is-invalid]="gistForm.get('title').touched && gistForm.get('title').invalid"
+               placeholder="Enter note title..." formControlName="title"
+               name="title">
+        <div class="invalid-feedback" *ngIf="gistForm.get('title').hasError('required')">This filed is required</div>
+        <div class="invalid-feedback" *ngIf="gistForm.get('title').hasError('maxLength')">This filed should be have
+          length max 255
+        </div>
       </div>
       <div class="form-group">
-        <textarea type="text" class="form-control" placeholder="Enter note..."></textarea>
+        <textarea type="text" class="form-control"
+                  [class.is-invalid]="gistForm.get('note').touched && gistForm.get('note').invalid"
+                  placeholder="Enter note..." formControlName="note"
+                  name="note"></textarea>
+        <div class="invalid-feedback" *ngIf="gistForm.get('note').hasError('required')">This filed is required</div>
+        <div class="invalid-feedback" *ngIf="gistForm.get('note').hasError('maxLength')">This filed should be have
+          length max 1000
+        </div>
       </div>
-      <button type="submit" class="btn btn-success">Add</button>
+      <button type="button" class="btn btn-success" (click)="addItem()">Add</button>
     </div>
   </div>
-  <app-note-item></app-note-item>
-  <app-note-item></app-note-item>
+  <div formArrayName="notes"
+       *ngFor="let item of gistForm.get('notes').controls; let i = index;">
+    <div class="row mt-4" [formGroupName]="i">
+      <div class="col-8">
+        <div class="form-group">
+          <input type="text" class="form-control"
+                 [class.is-invalid]="item.get('title').touched && item.get('title').invalid"
+                 placeholder="Enter note title..." formControlName="title"
+                 name="title">
+          <div class="invalid-feedback" *ngIf="item.get('title').hasError('required')">This filed is required</div>
+          <div class="invalid-feedback" *ngIf="item.get('title').hasError('maxLength')">This filed should be have length
+            max 255
+          </div>
+        </div>
+        <div class="form-group">
+        <textarea type="text" class="form-control"
+                  [class.is-invalid]="item.get('note').touched && item.get('note').invalid" placeholder="Enter note..."
+                  formControlName="note"
+                  name="note"></textarea>
+          <div class="invalid-feedback" *ngIf="item.get('note').hasError('required')">This filed is required</div>
+          <div class="invalid-feedback" *ngIf="item.get('note').hasError('maxLength')">This filed should be have length
+            max 1000
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-danger" (click)="deleteNote(i)">Delete</button>
+      </div>
+    </div>
+  </div>
 </form>

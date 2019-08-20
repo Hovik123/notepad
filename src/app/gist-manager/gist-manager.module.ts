@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { GistManagerRoutingModule } from './gist-manager-routing.module';
 import { GistManagerComponent } from './gist-manager.component';
-import { NoteItemComponent } from './note-item/note-item.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [GistManagerComponent, NoteItemComponent],
+  declarations: [GistManagerComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     GistManagerRoutingModule
   ]
 })
