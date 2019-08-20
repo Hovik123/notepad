@@ -1,0 +1,32 @@
+<form>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="title">Notepad title</label>
+        <input type="text" class="form-control" id="title" placeholder="My notepad title...">
+      </div>
+    </div>
+    <div class="col-4 offset-2">
+      <div class="btn-group pull-right" role="group">
+        <button type="button" class="btn">View Stats</button>
+        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <span>My Notes</span>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter note title...">
+      </div>
+      <div class="form-group">
+        <textarea type="text" class="form-control" placeholder="Enter note..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Add</button>
+    </div>
+  </div>
+  <app-note-item></app-note-item>
+  <app-note-item></app-note-item>
+</form>

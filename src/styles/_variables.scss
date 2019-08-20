@@ -1,0 +1,17 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 767px,
+  md: 768px,
+  xl: 1200px,
+);
+
+$container-max-widths: (
+  sm: 580px,
+  md: 600px,
+  xl: 1024px
+);
+$theme-colors: (
+  "primary": #39ACDC,
+  "danger": #EC3646,
+  "success": #57B93E
+);
