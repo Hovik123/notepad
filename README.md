@@ -47,3 +47,73 @@ notepad add contain following functionality:
   #### delete note 
     delete one note item should be remove one note from localStorage if its exist and 
     remove note from view acordingly
+    
+## See stats
+    Separate view where we can see the charts which updating each 5 second.
+   
+## Structure 
+
+      src
+      ├── app
+      │   ├── app.component.html
+      │   ├── app.component.scss
+      │   ├── app.component.spec.ts
+      │   ├── app.component.ts
+      │   ├── app.module.ts
+      │   ├── app-routing.module.ts
+      │   ├── core // Core module
+      │   │   ├── constants // Constant variables
+      │   │   │   └── index.ts
+      │   │   ├── core.module.ts
+      │   │   ├── guard // guards which will contain permisions
+      │   │   │   └── module-import-guard.ts
+      │   │   ├── interceptors // setting data before request and after  response
+      │   │   │   ├── http-request.interceptor.ts
+      │   │   │   └── http-token.interceptor.ts
+      │   │   └── services // Services for handling http data
+      │   │       ├── gist.service.spec.ts
+      │   │       └── gist.service.ts
+      │   ├── gist-charting //gist charting  module for handling statistics logic
+      │   │   ├── chart
+      │   │   │   ├── chart.component.html
+      │   │   │   ├── chart.component.scss
+      │   │   │   ├── chart.component.spec.ts
+      │   │   │   └── chart.component.ts
+      │   │   ├── gist-charting.component.html
+      │   │   ├── gist-charting.component.scss
+      │   │   ├── gist-charting.component.spec.ts
+      │   │   ├── gist-charting.component.ts
+      │   │   ├── gist-charting.module.ts
+      │   │   └── gist-charting-routing.module.ts
+      │   ├── gist-manager // gist module for handling add and remove gists 
+      │   │   ├── gist-manager.component.html
+      │   │   ├── gist-manager.component.scss
+      │   │   ├── gist-manager.component.spec.ts
+      │   │   ├── gist-manager.component.ts
+      │   │   ├── gist-manager.module.ts
+      │   │   └── gist-manager-routing.module.ts
+      │   ├── models // backend models
+      │   └── not-found // Not found component
+      │       ├── not-found.component.html
+      │       ├── not-found.component.scss
+      │       ├── not-found.component.spec.ts
+      │       └── not-found.component.ts
+      ├── assets
+      ├── environments
+      │   ├── environment.prod.ts
+      │   └── environment.ts
+      ├── favicon.ico
+      ├── index.html
+      ├── main.ts
+      ├── polyfills.ts
+      ├── styles
+      │   └── _variables.scss
+      ├── styles.scss
+      └── test.ts
+
+
+## Time
+    time of implementation is 11 Hours
+    
+### Todo
+      Need to add backend api models for supporting all typings
