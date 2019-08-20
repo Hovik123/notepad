@@ -16,9 +16,11 @@ const environment: any = argv.environment || '';
 const targetPath = `./src/environments/environment${environment.length  > 0 ? `.${environment}` : ''}.ts`;
 const envConfigFile = `
 export const environment = {
-    production: '${isProduction}',
+    production: ${isProduction},
     token: '${process.env.TOKEN}',
-    apiUrl: '${process.env.API_URL}'};`;
+    apiUrl: '${process.env.API_URL}'
+};
+`;
 
 fs.writeFile(targetPath, envConfigFile, err => {
   if (err) {
