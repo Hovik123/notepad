@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GistChartComponent } from './gist-chart.component';
+import { GistChartingComponent } from './gist-charting.component';
 
-describe('GistChartComponent', () => {
-  let component: GistChartComponent;
-  let fixture: ComponentFixture<GistChartComponent>;
+describe('GistChartingComponent', () => {
+  let component: GistChartingComponent;
+  let fixture: ComponentFixture<GistChartingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GistChartComponent ]
+      declarations: [ GistChartingComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GistChartComponent);
+    fixture = TestBed.createComponent(GistChartingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

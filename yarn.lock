@@ -668,6 +668,13 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
+angular-highcharts@^8.0.3:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/angular-highcharts/-/angular-highcharts-8.0.3.tgz#63d4c635f8779e2774bf6d810d52ae85a4e1c240"
+  integrity sha512-k+A6T5OcXWQRKASp/FuglPAgashI2uW9E/AEhsRPOONRuRMfVVW0N6c+M4ZnymtMXcHkTTTo/Sk9gbYtPsrSXQ==
+  dependencies:
+    tslib "^1.9.0"
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
@@ -3045,6 +3052,11 @@ hash.js@^1.0.0, hash.js@^1.0.3:
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
+
+highcharts@^7.1.3:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.1.3.tgz#ea3bb16dcdd780e757ab10e90466c64a82b6d285"
+  integrity sha512-aHAzlSf/czqJlpVt96jYkirWrIV1ZNHgxsTAyk2R5CcG/0V1G8Ge65p76eFqZQp7C8+cA8e6g1xsAPj51MsJ3Q==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"

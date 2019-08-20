@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {GistChartComponent} from '@app/gist-charting/gist-chart/gist-chart.component';
-
+import {GistChartingComponent} from '@app/gist-charting/gist-charting.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GistChartComponent
+    component: GistChartingComponent
   }
 ];
 

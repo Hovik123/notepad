@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GistChartComponent } from './gist-chart/gist-chart.component';
 import {GistChartingRoutingModule} from '@app/gist-charting/gist-charting-routing.module';
+import { ChartComponent } from './chart/chart.component';
+import {ChartModule} from 'angular-highcharts';
+import { GistChartingComponent } from './gist-charting.component';
 
 
 
 @NgModule({
-  declarations: [GistChartComponent],
+  declarations: [ChartComponent, GistChartingComponent],
   imports: [
     CommonModule,
+    ChartModule,
     GistChartingRoutingModule
   ]
 })
